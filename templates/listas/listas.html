@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{%block styles%}
+<style>
+    .voto:hover{
+    background-color: aqua;
+    cursor: pointer;
+    }
+</style>
+
+
+{%endblock%}
+
+
+
+{% block content %}
+
+    <div class="alert alert-success text-center " role="alert">
+      Bienvenido {{user.first_name}}
+    </div>
+    <div class="container mt-5">
+        <h1 class="text-center">Votación Estudiantil</h1>
+        <div class="row mt-4">
+            <!-- Candidato 1 -->
+            {%for candidato in candidatos%}
+            <div class="col-md-6 mb-4">
+                <div class="card voto" onclick="voto('{{candidato}}', '{{estudiante.id}}', '{{candidato.id}}')">
+                    <img src="{{candidato.foto.url}}" class="card-img-top" alt="Foto del Candidato 1">
+                    <div class="card-body">
+                        <h5 class="card-title">{{candidato.lista}}</h5>
+                        <p class="card-text">{{candidato.dignidad}} {{candidato.candidato}}</p>
+                        <button class="btn btn-primary">Votar por esta lista</button>
+                    </div>
+                </div>
+            </div>
+            {%endfor%}
+
+
+        </div>
+    </div>
+    <script>
+        function voto(lista, estudianteId, listaId){
+            Swal.fire({
+                title: "Estas seguro que desea votar por la lista: " + lista ,
+                showDenyButton: false,
+                showCancelButton: true,
+                confirmButtonText: "Guardar Voto",
+                denyButtonText: `Don't save`
+              }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                  Swal.fire("Voto Guardado", "", "success");
+                  location.href =`/listas/?id_est=${estudianteId}&id_list=${listaId}` 
+
+                } else if (result.isDenied) {
+                  Swal.fire("Los cambios no se guardaron", "", "info");
+                }
+              });  
+            /* 
+    
+            if(darVoto){
+                location.href =`/listas/?id_est=${estudianteId}&id_list=${listaId}` 
+            }
+            
+            alert(darVoto)
+            */
+        }
+    </script>
+
+{%endblock%}

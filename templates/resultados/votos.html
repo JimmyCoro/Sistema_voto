@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+
+
+
+
+{% block content %}
+
+    <div class="alert alert-success text-center " role="alert">
+      Bienvenido {{user.first_name}}
+      <a class="btn btn-warning" href="{% url 'reporte'%}" >Imprimir</a
+      >
+      
+    </div>
+    <div class="container mt-5">
+        <h1 class="text-center">Votación Estudiantil</h1>
+        <div class="row mt-4">
+            <!-- Candidato 1 -->
+
+            <div class="container mt-5">
+                <h1 class="text-center">Resultados de la Votación</h1>
+                
+                <div class="mt-4">
+                    <table class="table table-bordered table-hover mt-3">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Lista</th>
+                                <th scope="col">Total Votos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for lista in resultados %}
+                            <tr>
+                                <td>{{ lista.nombre }}</td>
+                                <td>{{ lista.total_votos }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            
+            
+            </div>
+
+        </div>
+    </div>
+
+
+
+{%endblock%}

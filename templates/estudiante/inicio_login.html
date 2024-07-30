@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+        <div class="container mt-4">
+            <h1>Bienvenido a la Votación Estudiantil</h1>
+            <p>Este es el contenido principal de tu página.</p>
+        </div>
+        <main class="container">
+          <div class="rows">
+            <div class="col m-5 border p-5 rounded ">
+              <h3 class="text-center mt-5">Iniciar Sesión</h3>
+              <form method="POST">
+                {% csrf_token %}
+                <div class="mb-3">
+                  <label for="cedula" class="form-label">Cedula</label>
+                  <input name="cedula" type="text" class="form-control" id="cedula" placeholder="ingrese el número de cédula" required>
+                </div>
+                <div class="mb-3">
+                  <label for="password" class="form-label">Contraseña</label>
+                  <input name="password" type="password" class="form-control" id="password" placeholder="Contraseña" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Iniciar Sesión</button>
+              </form>
+                {%if messages%}
+                <div class="alert alert-danger mt-5" role="alert">
+                    {%for message in messages%}
+                        {%if message.tags%}
+                            {{message}}
+                        {%endif%}
+
+                    {%endfor%}
+
+                </div>
+                {%endif%}
+            </div>
+          </div>
+        </main>
+{%endblock%}

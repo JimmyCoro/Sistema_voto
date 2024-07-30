@@ -1,0 +1,34 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<div class="container mt-5">
+    <h1 class="text-center">Votación Estudiantil</h1>
+    <div class="row mt-4">
+        <!-- Candidato 1 -->
+
+        <div class="container mt-5 w-50">
+            <h1 class="text-center">Resultados de la Votación</h1>
+            
+            <div class="mt-4 m" >
+                <table class="table table-bordered table-hover mt-3 text-center  ">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Lista</th>
+                            <th scope="col">Total Votos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for lista in listas %}
+                        <tr>
+                            <td>{{ lista.nombre }}</td>
+                            <td>{{ lista.total_votos }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        
+        
+        </div>
+
+    </div>
+</div>
